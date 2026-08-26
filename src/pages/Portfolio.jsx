@@ -160,16 +160,16 @@ export default function Portfolio() {
 
       </section>
 
-      {/* FULLSCREEN LIGHTBOX MODAL WITH TAP-OUTSIDE-TO-DISMISS */}
+      {/* FULLSCREEN LIGHTBOX MODAL - UPDATED FOR INSTANT RESPONSE */}
       <AnimatePresence>
         {activeModalItem && (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            onClick={() => setActiveModalItem(null)} // Dismiss on tapping anywhere on the backdrop!
-            className="fixed inset-0 z-[9999] bg-[#0b1a2e]/95 backdrop-blur-xl flex flex-col items-center justify-center p-3 sm:p-6 overflow-y-auto cursor-pointer"
+            transition={{ duration: 0.15 }}
+            onClick={() => setActiveModalItem(null)}
+            className="fixed inset-0 z-[9999] bg-[#0b1a2e]/95 backdrop-blur-md flex flex-col items-center justify-center p-3 sm:p-6 overflow-y-auto cursor-pointer"
           >
             {/* Close Button */}
             <button
@@ -183,17 +183,12 @@ export default function Portfolio() {
               <X className="w-6 h-6 text-[#facc15]" />
             </button>
 
-            {/* Tap Outside Hint Banner for Mobile */}
-            <div className="mb-3 text-[11px] text-slate-300 font-bold bg-white/10 px-4 py-1 rounded-full backdrop-blur-md border border-white/10 pointer-events-none">
-            
-            </div>
-
-            {/* Modal Card (Stop propagation when tapping inside card) */}
+            {/* Modal Card */}
             <motion.div 
-              initial={{ scale: 0.85, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.85, opacity: 0 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
               onClick={(e) => e.stopPropagation()} 
               className="bg-white rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl relative my-auto cursor-default border-2 border-[#facc15]/30"
             >
@@ -203,6 +198,7 @@ export default function Portfolio() {
                   src={activeModalItem.image} 
                   alt={activeModalItem.title} 
                   className="max-h-[65vh] sm:max-h-[70vh] w-auto max-w-full object-contain rounded-xl shadow-lg"
+                  loading="eager"
                 />
               </div>
 
@@ -241,7 +237,7 @@ export default function Portfolio() {
                     onClick={() => setActiveModalItem(null)}
                     className="w-full sm:w-auto text-center text-xs font-bold text-slate-500 hover:text-slate-900 py-2"
                   >
-                    إغلاق الصورة (أو انقر خارج الكارد)
+                    إغلاق الصورة
                   </button>
                 </div>
               </div>
