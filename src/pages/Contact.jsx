@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Phone, Mail, MapPin, Instagram, Facebook, MessageSquare, 
-  Send, CheckCircle2, Clock, Copy, ExternalLink, ShieldCheck, Sparkles, Building2
+  Send, CheckCircle2, Clock, Copy, ExternalLink, Building2
 } from 'lucide-react';
 import { siteInfo, servicesList } from '../data/siteData';
 
@@ -73,7 +73,7 @@ export default function Contact() {
           </h1>
           
           <p className="text-slate-300 text-base max-w-2xl mx-auto font-tajawal">
-            فريق مكتب توب رايز للاستشارات الهندسية متواجد لخدمتك والإجابة على كل استفساراتك الهندسية وتطوير مشاريعك.
+            فريق مكتب توب رايز للاستشارات الهندسية متواجد لخدمتك والإجابة على كافة استفساراتك الهندسية وتطوير مشاريعك.
           </p>
         </motion.div>
       </section>
@@ -83,7 +83,7 @@ export default function Contact() {
         <div className="text-center space-y-2 mb-12">
           <span className="text-[#f59e0b] font-bold text-sm tracking-wider uppercase">قنوات الاتصال المباشر</span>
           <h2 className="text-3xl font-black text-[#0b1a2e] font-cairo">
-            اختر الوسيلة الأنسب للتواصل معنا
+            اختر الوسيلة المناسبة للتواصل معنا
           </h2>
         </div>
 
@@ -209,7 +209,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <h3 className="text-xl font-bold text-[#0b1a2e]">البريد الإلكتروني الرسمى</h3>
+                <h3 className="text-xl font-bold text-[#0b1a2e]">البريد الإلكتروني الرسمي</h3>
                 <p className="text-xs text-slate-500 mt-1">لإرسال المخططات والعروض والمستندات</p>
               </div>
 
@@ -322,11 +322,11 @@ export default function Contact() {
             <div className="bg-gradient-to-br from-[#0b1a2e] via-[#132a44] to-[#0b1a2e] text-white p-8 rounded-[24px] shadow-2xl border border-slate-800 space-y-6 relative overflow-hidden">
               <div className="flex items-center gap-4 border-b border-slate-800 pb-4">
                 {/* Official Logo Accent */}
-                <div className="w-14 h-14 rounded-full bg-white p-1 border-2 border-[#facc15] shadow-md flex-shrink-0 flex items-center justify-center overflow-hidden">
+                <div className="w-14 h-14 rounded-2xl bg-white p-1 border-2 border-[#facc15] shadow-md flex-shrink-0 flex items-center justify-center overflow-hidden">
                   <img 
                     src="/logo.jpg" 
                     alt="شعار توب رايز" 
-                    className="w-full h-full object-contain rounded-full"
+                    className="w-full h-full object-contain"
                   />
                 </div>
                 <div>
@@ -380,7 +380,7 @@ export default function Contact() {
           >
             <div className="bg-white p-8 sm:p-10 rounded-[24px] border border-slate-200 shadow-xl space-y-6">
               <div>
-                <span className="text-[#f59e0b] font-bold text-xs uppercase tracking-wider">استمارة التواصل المباشر</span>
+                <span className="text-[#f59e0b] font-bold text-xs uppercase tracking-wider">استمارة الطلب والاستشارة المباشرة</span>
                 <h2 className="text-3xl font-black text-[#0b1a2e] font-cairo mt-1">
                   أرسل تفاصيل مشروعك أو طلب استشارة
                 </h2>
