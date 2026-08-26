@@ -185,7 +185,7 @@ export default function Portfolio() {
 
             {/* Tap Outside Hint Banner for Mobile */}
             <div className="mb-3 text-[11px] text-slate-300 font-bold bg-white/10 px-4 py-1 rounded-full backdrop-blur-md border border-white/10 pointer-events-none">
-              انقر في أي مكان خارج الصورة للإغلاق ✕
+            
             </div>
 
             {/* Modal Card (Stop propagation when tapping inside card) */}
