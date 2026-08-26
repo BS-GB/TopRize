@@ -16,14 +16,14 @@ export default function Logo({ size = 'medium', lightMode = false, showSubtitle 
 
   return (
     <Link to="/" className="inline-flex items-center gap-3 group focus:outline-none">
-      {/* Official Logo Image Frame with Gold Glow */}
+      {/* Professional Pure White Container Filling space cleanly */}
       <div 
-        className={`relative flex-shrink-0 rounded-full bg-white p-0.5 shadow-[0_0_20px_rgba(250,204,21,0.25)] border-2 border-[#facc15] group-hover:border-[#f59e0b] group-hover:scale-105 transition-all duration-300 overflow-hidden flex items-center justify-center ${containerSizes[size]}`}
+        className={`relative flex-shrink-0 bg-white p-1 rounded-2xl shadow-[0_4px_20px_rgba(250,204,21,0.3)] border-2 border-[#facc15] group-hover:border-[#f59e0b] group-hover:scale-105 transition-all duration-300 overflow-hidden flex items-center justify-center ${containerSizes[size]}`}
       >
         <img 
           src="/logo.jpg" 
           alt="توب رايز TOP RISE" 
-          className="w-full h-full object-contain rounded-full"
+          className="w-full h-full object-contain"
         />
       </div>
 

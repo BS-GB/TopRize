@@ -13,14 +13,14 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           
-          {/* Col 1: About & Logo */}
+          {/* Col 1: About & Logo with Pure White Container */}
           <div className="space-y-4">
             <Link to="/" className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#facc15] to-[#f59e0b] p-0.5 shadow-md flex items-center justify-center overflow-hidden">
+              <div className="w-12 h-12 rounded-2xl bg-white p-1 shadow-[0_4px_20px_rgba(250,204,21,0.3)] border-2 border-[#facc15] flex items-center justify-center overflow-hidden">
                 <img 
                   src="/logo.jpg" 
                   alt="توب رايز TOP RISE" 
-                  className="w-full h-full object-contain rounded-full"
+                  className="w-full h-full object-contain"
                 />
               </div>
               <div className="flex flex-col">
