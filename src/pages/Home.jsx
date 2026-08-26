@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowLeft, CheckCircle2, Building, ShieldCheck, Award, 
   Compass, Building2, Droplets, Zap, Layers, Layout, 
-  TrendingUp, Calculator, FileCheck, HardHat, Phone, MessageSquare, MapPin
+  TrendingUp, Calculator, FileCheck, HardHat, Phone, MessageSquare, MapPin, ExternalLink, X
 } from 'lucide-react';
 import { siteInfo, servicesList, productsList, portfolioItems } from '../data/siteData';
 
@@ -32,6 +32,8 @@ const itemVariants = {
 };
 
 export default function Home() {
+  const [activeModalItem, setActiveModalItem] = useState(null);
+
   return (
     <div className="space-y-20 pb-16 overflow-hidden">
       
@@ -312,33 +314,48 @@ export default function Home() {
           {portfolioItems.slice(0, 6).map((item) => (
             <div 
               key={item.id}
-              className="bg-white rounded-[20px] overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 group"
+              onClick={() => setActiveModalItem(item)}
+              className="bg-white rounded-[20px] overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer flex flex-col justify-between"
             >
-              <div className="relative h-60 overflow-hidden bg-slate-900">
-                <img 
-                  src={item.image} 
-                  alt={item.title} 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
-                <div className="absolute top-3 right-3 bg-[#0b1a2e]/90 text-[#facc15] text-[11px] font-bold px-3 py-1 rounded-full backdrop-blur-sm">
-                  {item.categoryName}
+              <div>
+                <div className="relative h-60 overflow-hidden bg-slate-900">
+                  <img 
+                    src={item.image} 
+                    alt={item.title} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b1a2e]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <span className="text-white text-xs font-bold flex items-center gap-1.5 bg-[#0b1a2e]/90 px-3 py-1.5 rounded-full backdrop-blur-md border border-slate-700">
+                      <ExternalLink className="w-3.5 h-3.5 text-[#facc15]" />
+                      عرض الصورة بالحجم الكامل
+                    </span>
+                  </div>
+                  <div className="absolute top-3 right-3 bg-[#0b1a2e]/90 text-[#facc15] text-[11px] font-bold px-3 py-1 rounded-full backdrop-blur-sm">
+                    {item.categoryName}
+                  </div>
+                </div>
+
+                <div className="p-5 space-y-2">
+                  <div className="flex items-center justify-between text-xs text-slate-500 font-semibold">
+                    <span className="flex items-center gap-1">
+                      <MapPin className="w-3.5 h-3.5 text-[#f59e0b]" />
+                      {item.location}
+                    </span>
+                  </div>
+                  <h3 className="font-bold text-base text-[#0b1a2e] group-hover:text-[#f59e0b] transition-colors line-clamp-1">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs text-slate-600 leading-relaxed line-clamp-2">
+                    {item.description}
+                  </p>
                 </div>
               </div>
 
-              <div className="p-5 space-y-2">
-                <div className="flex items-center justify-between text-xs text-slate-500 font-semibold">
-                  <span className="flex items-center gap-1">
-                    <MapPin className="w-3.5 h-3.5 text-[#f59e0b]" />
-                    {item.location}
-                  </span>
-                </div>
-                <h3 className="font-bold text-base text-[#0b1a2e] group-hover:text-[#f59e0b] transition-colors line-clamp-1">
-                  {item.title}
-                </h3>
-                <p className="text-xs text-slate-600 leading-relaxed line-clamp-2">
-                  {item.description}
-                </p>
+              <div className="p-5 pt-0">
+                <button className="w-full text-center text-xs font-bold text-[#f59e0b] group-hover:text-[#d97706] flex items-center justify-center gap-1 border-t border-slate-100 pt-3">
+                  عرض الصورة والتفاصيل
+                </button>
               </div>
             </div>
           ))}
@@ -388,6 +405,93 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* FULLSCREEN LIGHTBOX MODAL */}
+      <AnimatePresence>
+        {activeModalItem && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+            onClick={() => setActiveModalItem(null)}
+            className="fixed inset-0 z-[9999] bg-[#0b1a2e]/95 backdrop-blur-md flex flex-col items-center justify-center p-3 sm:p-6 overflow-y-auto cursor-pointer"
+          >
+            {/* Close Button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setActiveModalItem(null);
+              }}
+              className="absolute top-4 left-4 sm:top-6 sm:left-6 z-30 bg-[#0b1a2e] text-white p-3 rounded-full hover:bg-slate-800 transition-all shadow-2xl border-2 border-[#facc15]/50 flex items-center justify-center cursor-pointer"
+              title="إغلاق الصورة"
+            >
+              <X className="w-6 h-6 text-[#facc15]" />
+            </button>
+
+            {/* Modal Card */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              onClick={(e) => e.stopPropagation()} 
+              className="bg-white rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl relative my-auto cursor-default border-2 border-[#facc15]/30"
+            >
+              {/* Image Viewport Container */}
+              <div className="relative bg-[#07111e] min-h-[250px] max-h-[70vh] sm:max-h-[75vh] flex items-center justify-center overflow-hidden p-2">
+                <img 
+                  src={activeModalItem.image} 
+                  alt={activeModalItem.title} 
+                  className="max-h-[65vh] sm:max-h-[70vh] w-auto max-w-full object-contain rounded-xl shadow-lg"
+                  loading="eager"
+                />
+              </div>
+
+              {/* Details & Actions */}
+              <div className="p-5 sm:p-8 space-y-3 sm:space-y-4">
+                <div className="flex items-center justify-between flex-wrap gap-2">
+                  <span className="bg-[#facc15]/20 text-[#0b1a2e] text-xs font-extrabold px-3 py-1 rounded-full border border-[#facc15]/40">
+                    {activeModalItem.categoryName}
+                  </span>
+                  <span className="text-xs text-slate-500 flex items-center gap-1 font-semibold">
+                    <MapPin className="w-3.5 h-3.5 text-[#f59e0b]" />
+                    موقع المشروع: {activeModalItem.location}
+                  </span>
+                </div>
+
+                <h2 className="text-xl sm:text-2xl font-black text-[#0b1a2e] font-cairo">
+                  {activeModalItem.title}
+                </h2>
+
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-tajawal">
+                  {activeModalItem.description}
+                </p>
+
+                <div className="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
+                  <a
+                    href={`${siteInfo.contact.whatsapp.link}?text=${encodeURIComponent(`السلام عليكم، أود طلب استشارة أو تصميم مشابه لمشروع توب رايز: ${activeModalItem.title}`)}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="w-full sm:w-auto bg-[#facc15] text-[#0b1a2e] font-extrabold px-6 py-3 rounded-full text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md hover:scale-105 transition-all"
+                  >
+                    <MessageSquare className="w-4 h-4 text-[#0b1a2e]" />
+                    <span>طلب تصميم مشابه عبر الواتساب</span>
+                  </a>
+
+                  <button
+                    onClick={() => setActiveModalItem(null)}
+                    className="w-full sm:w-auto text-center text-xs font-bold text-slate-500 hover:text-slate-900 py-2"
+                  >
+                    إغلاق الصورة
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </div>
   );
