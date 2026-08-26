@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   RESET & BASE VARIABLES
+   ============================================================ */
+:root {
+    --primary-dark: #0b1a2e;
+    --primary-mid: #1a3a5c;
+    --gold: #facc15;
+    --gold-dark: #f59e0b;
+    --white: #ffffff;
+    --soft-bg: #f8fafc;
+    --text-dark: #1e293b;
+    --text-muted: #64748b;
+    --text-light: #94a3b8;
+    --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 30px 80px rgba(0, 0, 0, 0.15);
+    --radius-sm: 16px;
+    --radius-md: 20px;
+    --radius-lg: 24px;
+    --transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background: #f0f4f8;
+    color: var(--text-dark);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--primary-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 10px;
+}
+
+/* ============================================================
+   PRELOADER ANIMATION
+   ============================================================ */
+@keyframes pulseLoader {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
+
+@keyframes loadProgress {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes glowPulse {
+    0% {
+        box-shadow: 0 0 20px rgba(250, 204, 21, 0.2);
+    }
+
+    100% {
+        box-shadow: 0 0 50px rgba(250, 204, 21, 0.5);
+    }
+}
+
+@keyframes floatShape {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(30px, -30px) scale(1.1);
+    }
+
+    66% {
+        transform: translate(-20px, 40px) scale(0.9);
+    }
+
+    100% {
+        transform: translate(40px, 20px) scale(1.05);
+    }
+}
+
+.gold-gradient-text {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-bg {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    color: var(--primary-dark);
+}
+
+.gold-gradient-bg-hover:hover {
+    background: linear-gradient(135deg, var(--gold-dark) 0%, #d97706 100%);
+    color: #ffffff;
+}
+
+.dark-card-gradient {
+    background: linear-gradient(145deg, var(--primary-dark), var(--primary-mid));
+}
